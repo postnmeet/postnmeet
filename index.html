@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            PostnMeet
+        </title>
+
+        <link rel="stylesheet" href="Styles\postnmeet.css">
+
+    </head>
+
+    <body>
+
+        <div class="header">
+            <span class="title">PostnMeet</span>
+            
+            <div class="search-func">
+                <input placeholder="Search" class="search-input" onkeydown="
+                    if(event.key==='Enter')
+                    {
+                        search();
+                    }
+                    ">
+            <!--<button class="search-button">Search</button>-->
+            </div>
+        </div>
+
+        <div class = "welcome-modal" id="welcome-modal">
+            <span class="welcome-message">
+                👋 Welcome!
+                <br><br>
+                This is a respectful space to post meetup ideas.
+                <br>
+                Important: We’re just a forum—offline meetups are arranged solely by other users.
+                <br>
+                We don’t oversee events or assume responsibility for anything that happens in person.
+                <br><br>
+                Please keep it respectful and on-topic. Thanks for joining, and happy posting!
+            </span>
+
+            <button class="welcome-modal-button" onclick="welcomeModalClose()">
+                Start Posting !
+            </button>
+        </div>
+
+        <div class="js-post-div"></div>
+
+        <div class = "input_modal" id="modal">
+            <input placeholder="Your Name*" class="Modal-input modal-name" onkeydown="in_modal_keyDown();">
+            <input placeholder="Event*" class="Modal-input modal-event" onkeydown="in_modal_keyDown();">
+            <input placeholder="Venue" class="Modal-input modal-venue" onkeydown="in_modal_keyDown();">
+            <input placeholder="City*" class="Modal-input modal-city" onkeydown="in_modal_keyDown();">
+            <input placeholder="Time" type = "time" class="Modal-input modal-time" onkeydown="in_modal_keyDown();">
+            <input placeholder="Date" type = "date" class="Modal-input modal-date" onkeydown="in_modal_keyDown();">
+            <input placeholder="Map link" class="Modal-input modal-map" onkeydown="in_modal_keyDown();">
+            <input placeholder="Contact Details*" class="Modal-input modal-contact" onkeydown="in_modal_keyDown();">
+            <div>
+                 <button onclick="
+                    add_post();
+                    display_posts();
+                    "
+            
+                    class="post_button_modal">
+                    post
+                </button>
+                <button class="cancel_modal" onclick="close_modal()">
+                    Cancel
+                </button>
+            </div>
+        </div>
+
+        <div class="post_tools">
+            
+            <button onclick="
+            open_modal()
+            "
+            class="post_button" id = post_button_out>
+                Post &#8594;
+            </button>
+        </div>
+
+        <script src="javascript\postnmeet.js"></script>
+    </body>
+</html>
