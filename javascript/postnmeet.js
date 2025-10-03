@@ -2,6 +2,7 @@ document.getElementById('welcome-modal').style.display = '';
 document.getElementById('post_button_out').style.display = 'none';
 document.getElementById('modal').style.display = 'none';
 
+
 let posts = [];
 
 let container = document.querySelector('.js-post-div')
@@ -41,7 +42,7 @@ function add_post()
                 modal_date : document.querySelector('.modal-date').value,
                 modal_map : document.querySelector('.modal-map').value,
                 modal_contact : document.querySelector('.modal-contact').value
-            }, get_date_data()]);
+            }, dayjs()]);
 
         document.querySelector('.modal-name').value = '';
         document.querySelector('.modal-event').value = '';
@@ -83,7 +84,7 @@ function display_posts()
                         <p>Map : <a href = "${posts[i][0].modal_map}" target = "_blank">Unlock Location!</a></p>
                         <p>Contact : ${posts[i][0].modal_contact}</p>
                         <br>
-                        <p>${posts[i][1]}</p>
+                        <p>${time_since_post(posts[i][1])}</p>
                     </div>`;
         document.querySelector('.js-post-div').innerHTML = post_list;
 
@@ -94,12 +95,37 @@ function display_posts()
         };
     }
 
+    delete_old();
+
 }
 
 function get_date_data()
 {
-    const date_data = new Date();
-    return `Post Time : ${date_data.getHours()}:${date_data.getMinutes()}:${date_data.getSeconds()} <br> Post Date : ${date_data.getDay()}-${date_data.getMonth()}-${date_data.getFullYear()}`
+    return dayjs().format('DD-MM-YYYY HH:mm:ss')
+    //const date_data = new Date();
+    //return `Post Time : ${date_data.getHours()}:${date_data.getMinutes()}:${date_data.getSeconds()} <br> Post Date : ${date_data.getDay()}-${date_data.getMonth()}-${date_data.getFullYear()}`
+}
+
+function time_since_post(post_time)
+{
+    let current_time = dayjs();
+    post_time = dayjs(post_time);
+    let time_elap = current_time.diff(post_time);
+
+    if(parseInt(time_elap/1000) < 60)
+    {
+        return String(parseInt(time_elap/1000))+' seconds ago'
+    }
+
+    else if(60<=parseInt(time_elap/1000)<3600)
+    {
+        return String(parseInt(parseInt(time_elap/1000)/60))+' minutes ago'
+    }
+    else
+    {
+        return String(parseInt(parseInt(parseInt(time_elap/1000)/60)/60))+' hours ago'
+    }
+    
 }
 
 function search()
@@ -128,15 +154,12 @@ function search()
                         <p>Map : <a href = "${posts[i][0].modal_map}" target = "_blank">Unlock Location!</a></p>
                         <p>Contact : ${posts[i][0].modal_contact}</p>
                         <br>
-                        <p>${posts[i][1]}</p>
+                        <p>${time_since_post(posts[i][1])}</p>
                     </div>`;
-        document.querySelector('.js-post-div').innerHTML = post_list;
+                    document.querySelector('.js-post-div').innerHTML = post_list;
                 }
             })
-    }
-
-
-    
+    }    
 }
 
 function timeout(post_button, time_milsec)
@@ -173,4 +196,19 @@ function in_modal_keyDown()
     
     if(event.key==='Escape')
         {close_modal()};
+}
+
+function save_post_in_file()
+{
+
+}
+
+function delete_old()
+{
+    posts.forEach((post) => {
+        if(post[1] == '1 minutes ago')
+        {
+            posts.shift()
+        }
+    })
 }

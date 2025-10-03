@@ -21,6 +21,7 @@
                         search();
                     }
                     ">
+                </input>
             <!--<button class="search-button">Search</button>-->
             </div>
         </div>
@@ -52,7 +53,7 @@
             <input placeholder="City*" class="Modal-input modal-city" onkeydown="in_modal_keyDown();">
             <input placeholder="Time" type = "time" class="Modal-input modal-time" onkeydown="in_modal_keyDown();">
             <input placeholder="Date" type = "date" class="Modal-input modal-date" onkeydown="in_modal_keyDown();">
-            <input placeholder="Map link" class="Modal-input modal-map" onkeydown="in_modal_keyDown();">
+            <input placeholder="Map link" type = "url" class="Modal-input modal-map" onkeydown="in_modal_keyDown();">
             <input placeholder="Contact Details*" class="Modal-input modal-contact" onkeydown="in_modal_keyDown();">
             <div>
                  <button onclick="
@@ -79,6 +80,7 @@
             </button>
         </div>
 
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
         <script src="javascript\postnmeet.js"></script>
     </body>
 </html>
