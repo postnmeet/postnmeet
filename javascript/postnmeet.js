@@ -32,7 +32,7 @@ function add_post()
 
     if(document.querySelector('.modal-name').value && document.querySelector('.modal-event').value && document.querySelector('.modal-city').value && document.querySelector('.modal-contact').value)
     {
-        posts.push(
+        posts.unshift(
             [{
                 modal_name : document.querySelector('.modal-name').value,
                 modal_event : document.querySelector('.modal-event').value,
@@ -89,14 +89,11 @@ function display_posts()
         document.querySelector('.js-post-div').innerHTML = post_list;
 
         let last = container.lastElementChild;
-        if(last)
+        /*if(last)
         {
             last.scrollIntoView({behavior: 'auto', block: 'start'})
-        };
+        };*/
     }
-
-    delete_old();
-
 }
 
 function get_date_data()
@@ -200,7 +197,7 @@ function in_modal_keyDown()
 
 function save_post_in_file()
 {
-
+    
 }
 
 function delete_old()
